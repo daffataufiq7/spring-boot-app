@@ -35,11 +35,12 @@
     </nav>
     <h2>Riwayat Pengeluaran</h2>
     <ul>
-        <li th:each="p : ${pengeluaranList}"
+        <!-- Perbaikan penggunaan th:each untuk menampilkan riwayat pengeluaran -->
+        <li th:each="p : ${pengeluaranList}" 
             th:text="${p.waktu + ' - Rp' + p.jumlah + ' untuk ' + p.keterangan}">
         </li>
     </ul>
-    <form action="/hapus" method="post">
+    <form th:action="@{/hapus}" method="post"> <!-- Menggunakan th:action untuk dinamis -->
         <button type="submit">Hapus Semua Riwayat</button>
     </form>
 </body>
