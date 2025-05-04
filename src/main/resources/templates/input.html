@@ -1,45 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Input Pengeluaran</title>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            margin: 0;
-            background: linear-gradient(270deg, #f6d365, #fda085);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            font-family: Arial;
-        }
-        @keyframes gradientBG {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
-        }
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            padding: 12px;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="/input">Catat</a>
-        <a href="/riwayat">Riwayat</a>
-        <a href="/logout">Logout</a>
-    </nav>
-    <h2>Halo, <span th:text="${username}">User</span>! Catat pengeluaranmu:</h2>
-    <form action="/tambah" method="post">
-        <label>Jumlah (Rp):</label><br>
-        <input type="number" name="jumlah" step="0.01" required><br>
-        <label>Keterangan:</label><br>
-        <input type="text" name="keterangan" required><br><br>
-        <button type="submit">Simpan</button>
-    </form>
-</body>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+  <head><title th:text="'Input Pengeluaran – PengeluaranApp'">Input Pengeluaran</title></head>
+  <body>
+    <div class="card shadow-sm mx-auto" style="max-width:600px">
+      <div class="card-body p-4">
+        <h3 class="mb-4">Halo, <span th:text="${username}">User</span>!</h3>
+        <form th:action="@{/tambah}" method="post" class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Jumlah (Rp)</label>
+            <input type="number" name="jumlah" class="form-control" step="0.01" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Keterangan</label>
+            <input type="text" name="keterangan" class="form-control" required>
+          </div>
+          <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>

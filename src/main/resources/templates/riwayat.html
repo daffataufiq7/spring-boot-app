@@ -1,47 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Riwayat Pengeluaran</title>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            margin: 0;
-            background: linear-gradient(270deg, #ffecd2, #fcb69f);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            font-family: Arial;
-        }
-        @keyframes gradientBG {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
-        }
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            padding: 12px;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="/input">Catat</a>
-        <a href="/riwayat">Riwayat</a>
-        <a href="/logout">Logout</a>
-    </nav>
-    <h2>Riwayat Pengeluaran</h2>
-    <ul>
-        <!-- Perbaikan penggunaan th:each untuk menampilkan riwayat pengeluaran -->
-        <li th:each="p : ${pengeluaranList}" 
-            th:text="${p.waktu + ' - Rp' + p.jumlah + ' untuk ' + p.keterangan}">
-        </li>
-    </ul>
-    <form th:action="@{/hapus}" method="post"> <!-- Menggunakan th:action untuk dinamis -->
-        <button type="submit">Hapus Semua Riwayat</button>
-    </form>
-</body>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+  <head><title th:text="'Riwayat Pengeluaran – PengeluaranApp'">Riwayat Pengeluaran</title></head>
+  <body>
+    <div class="card shadow-sm mx-auto" style="max-width:700px">
+      <div class="card-body p-4">
+        <h3 class="mb-4">Riwayat Pengeluaran</h3>
+        <ul class="list-group mb-3">
+          <li class="list-group-item"
+              th:each="p : ${pengeluaranList}"
+              th:text="${p.waktu + ' – Rp ' + p.jumlah + ' untuk ' + p.keterangan}">
+          </li>
+        </ul>
+        <form th:action="@{/hapus}" method="post">
+          <button type="submit" class="btn btn-danger">Hapus Semua</button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
